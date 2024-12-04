@@ -13,11 +13,58 @@
     <meta name="author" content="Kasper Kamperman" />
     <title>Mobile First Camera Template</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #222;
+            font-family: Roboto, Arial, sans-serif;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(255,255,255,0.1);
+            z-index: 1000;
+            text-align: center;
+            color: white;
+        }
+        .modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .modal a {
+            text-decoration: none;
+            color: #859900;
+            padding: 8px 16px;
+            display: block;
+            text-align: right;
+        }
+        .modal a:hover {
+            text-decoration: underline;
+            background: none;
+        }
+        .modal p {
+            text-align: center;
+        }
+    </style>
     <script>
         function handleClick() {
             setTimeout(() => {
-                alert("Error: Code 23");
+                document.getElementById('errorModal').style.display = 'block';
+                document.getElementById('modalBackdrop').style.display = 'block';
             }, 200);
+        }
+
+        function closeModal() {
+            document.getElementById('errorModal').style.display = 'none';
+            document.getElementById('modalBackdrop').style.display = 'none';
         }
     </script>
 
@@ -44,6 +91,11 @@
           aria-pressed="false"
         ></button>
       </div>
+    </div>
+    <div id="modalBackdrop" class="modal-backdrop"></div>
+    <div id="errorModal" class="modal">
+        <p>Error: Failed to capture</p>
+        <a href="#" onclick="closeModal()">OK</a>
     </div>
     <script src="js/adapter.min.js"></script>
     <script src="js/screenfull.min.js"></script>
